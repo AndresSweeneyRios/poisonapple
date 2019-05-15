@@ -3850,7 +3850,7 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
-pako@^1.0.6, pako@~1.0.5:
+pako@~1.0.5:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
   integrity sha512-0DTvPVU3ed8+HNXOu5Bs+o//Mbdj9VNQMUOe9oKCwh8l0GNwpTDMKCWbRjgtD291AWnkAgkqA/LOnQS8AmS1tw==
@@ -4099,11 +4099,6 @@ postcss@^7.0.0:
     chalk "^2.4.2"
     source-map "^0.6.1"
     supports-color "^6.1.0"
-
-postprocessing@^6.3.3:
-  version "6.3.3"
-  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.3.3.tgz#2444ce86d393a40be700d4ea774734cd2a14220e"
-  integrity sha512-cR5Hcb94PBkAZ7ZOh5URd4L38z+Z+Ab2v1fw4VVlxOZWlZwg9EsGl5YLDKkabksG/hWg16gabP6hnm2gl6EmOw==
 
 private@^0.1.6:
   version "0.1.8"
@@ -5147,33 +5142,15 @@ terser@^3.16.1:
     source-map "~0.6.1"
     source-map-support "~0.5.10"
 
-three-fbx-loader@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/three-fbx-loader/-/three-fbx-loader-1.0.3.tgz#7993429043cdc32f11882a9fefc9bee2f2d6d222"
-  integrity sha512-CQZ0IkwqX+ZbIca225mfKCq1feH8XJOf2zqMcC2bugvq20S7alHGsG9QEELbyN9zSL0EvkBXADVDO2lupF0E+A==
-  dependencies:
-    pako "^1.0.6"
-    three "^0.89.0"
-
 three-fbxloader-offical@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/three-fbxloader-offical/-/three-fbxloader-offical-1.0.0.tgz#db7d684ee65174b3044dd96e479519952520f4d7"
   integrity sha512-MPEznEBZzJA2PMNPRGJzZ95BjDcZ75FQurAjsQeZuEErA1qbSLpQM/n1jceJUAOGASbeQ7V/ABS3zx6tOTtXKQ==
 
-three-obj-mtl-loader@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/three-obj-mtl-loader/-/three-obj-mtl-loader-1.0.3.tgz#2901efd5b77cce29b61733c63f196432ee653667"
-  integrity sha512-0z7BfyG6vYPY9RvxJvL4rq8PbNrF42Kn4zxeqTfeDzJN++2oKbtCQhxHs5vLULnDuCRTEyDFf5TYvO+1vnJ7KQ==
-
 three@^0.104.0:
   version "0.104.0"
   resolved "https://registry.yarnpkg.com/three/-/three-0.104.0.tgz#9ad1da492153b753a89e0df066631215bd9d9087"
   integrity sha512-q617IMBC5k40U2E9UC4/LtmhzTOOLB1jGMIooUL+QrhZ7abiGCSDrKrpCDt9V8RTl6xw+0FYfA1PYsIPKbQOgg==
-
-three@^0.89.0:
-  version "0.89.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.89.0.tgz#4442d819a6168871b8d2cb37ad12a24310c170f5"
-  integrity sha1-RELYGaYWiHG40ss3rRKiQxDBcPU=
 
 through2@^2.0.0:
   version "2.0.5"

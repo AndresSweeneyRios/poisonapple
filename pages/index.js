@@ -2,29 +2,32 @@ import * as THREE from 'three'
 import '../sass/global.sass'
 import css from "./index.sass"
 import FBXLoader from 'three-fbxloader-offical'
-import { BloomEffect, EffectComposer, EffectPass, RenderPass } from "postprocessing"
 
 export default class extends React.Component {
     async componentDidMount () {
         const fbx = new FBXLoader()
         const scene = new THREE.Scene()
-        const composer = new EffectComposer(new THREE.WebGLRenderer())
-        const renderer = composer.renderer
+        const renderer = new THREE.WebGLRenderer({
+            antialias: true
+        })
         const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000 )
-        const sun = new THREE.DirectionalLight( 0xffffff, 1 )
-        const ambient = new THREE.AmbientLight( 0x91e9de )
+        const hemisphere = new THREE.HemisphereLight( 0xd9efff, 0x313131, 0.8 );
+        const sun = new THREE.DirectionalLight( 0xE0D5FF, 1 )
+        const ambient = new THREE.AmbientLight( 0x303030 )
         const pointlight = new THREE.PointLight( 0xffffff, 0.4, 100)
+        const pointlightBack = new THREE.PointLight( 0xffffff, 0.3, 100)
 
-        const effectPass = new EffectPass(camera, new BloomEffect({
-            distinction: 2.0,
-        }))
-        
-        effectPass.renderToScreen = true
- 
-        composer.addPass(new RenderPass(scene, camera))
-        composer.addPass(effectPass)
+        const plane = new THREE.Mesh( 
+            new THREE.PlaneBufferGeometry( 40, 40, 40, 40 ), 
 
-        pointlight.position.set( -2, 0, 6 );
+            new THREE.MeshBasicMaterial({ color: 0x373737 })
+        )
+
+        plane.position.set(0,0,-4)
+
+        pointlight.position.set( -4, 0, 12 )
+
+        pointlightBack.position.set( 3, 3, 2 )
 
         const apple = await new Promise ( (resolve, reject) => 
             fbx.load(
@@ -35,12 +38,12 @@ export default class extends React.Component {
             )
         )
 
-        sun.position.set( 0, 0.5, 1 )
+        sun.position.set( 0, 0.5, 4 )
 
         renderer.shadowMap.enabled = true;
         sun.castShadow = true;
 
-        camera.position.z = 4
+        camera.position.z = 6
         camera.position.y = 0.2
 
         apple.scale.set(0.01, 0.01, 0.01)
@@ -58,31 +61,29 @@ export default class extends React.Component {
                     "Blue": 0x80d1fe
                 }[child.name],
 
-                roughness: 0.7
+                roughness: 1,
+                emissive: 0x010101
             })
         })
 
-        composer.setSize( window.innerWidth, window.innerHeight )
-
         renderer.setSize( window.innerWidth, window.innerHeight )
 
-        scene.add( sun )
-        scene.add( ambient )
-        scene.add( apple )
-        scene.add( pointlight )
- 
-        const clock = new THREE.Clock();
+        scene.add( 
+            ambient, hemisphere, 
+            sun, pointlight, pointlightBack, 
+            apple, plane 
+        )
 
         const animate = () => {
             requestAnimationFrame( animate )
-            composer.render(clock.getDelta());
+            renderer.render( scene, camera )
         }
 
         animate()
 
-        setInterval(() => apple.rotation.y += 0.015, 20)
+        setInterval(() => apple.rotation.y += 0.01, 20)
 
-        document.querySelector(`.${css.background}`).appendChild(composer.renderer.domElement)
+        document.querySelector(`.${css.background}`).appendChild(renderer.domElement)
     }
     
     render () {
