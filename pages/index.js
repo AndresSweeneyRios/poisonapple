@@ -5,13 +5,12 @@ import Link from 'next/link'
 import {
     Scene, WebGLRenderer, HemisphereLight, DirectionalLight, AmbientLight, PointLight, 
     Mesh, MeshBasicMaterial, MeshStandardMaterial, PerspectiveCamera, PlaneBufferGeometry,
-
-    Clock
+    Vector2, Clock
 } from 'three'
 
 import {
-    EffectComposer, EffectPass, RenderPass, ShaderPass, ShaderExtras,
-	BlendFunction, ScanlineEffect, NoiseEffect,
+    EffectComposer, EffectPass, RenderPass, BlendFunction, 
+    ScanlineEffect, NoiseEffect
 } from 'postprocessing'
 
 import FBXLoader from 'three-fbxloader-offical'
@@ -20,12 +19,13 @@ export default class extends React.Component {
     async componentDidMount () {
         const container = document.querySelector(`.${css.background}`)
 
-        console.log(container.offsetWidth)
-
         const fbx = new FBXLoader()
 
         const scene = new Scene()
-        const composer = new EffectComposer(new WebGLRenderer())
+        const composer = new EffectComposer(new WebGLRenderer({
+            logarithmicDepthBuffer: true,
+            antialias: true
+        }))
         const camera = new PerspectiveCamera( 50, container.offsetWidth / container.offsetHeight, 0.1, 1000 )
 
         const hemisphere = new HemisphereLight( 0xd9efff, 0x313131, 0.8 )
@@ -43,7 +43,9 @@ export default class extends React.Component {
             resolve => fbx.load( 'static/apple.fbx', resolve )
         )
 
-        apple.traverse( child =>
+        apple.traverse( child => {
+            if (!child.material) return
+
             child.material = new MeshStandardMaterial({ 
                 color: {
                     "Pink": 0xfe567f, "Stem": 0x72624a,
@@ -52,9 +54,10 @@ export default class extends React.Component {
 
                 roughness: 1
             })
-        )
+        })
 
-        composer.setSize( container.offsetWidth, container.offsetHeight )
+        composer.setSize( container.offsetWidth*2, container.offsetHeight*2 )
+        composer.renderer.setSize( container.offsetWidth, container.offsetHeight )
 
         camera.position.z = 6
         camera.position.y = 0.1
@@ -77,20 +80,16 @@ export default class extends React.Component {
             density: 1.3
         })
 
+		const noiseEffect = new NoiseEffect({ 
+            blendFunction: BlendFunction.COLOR_DODGE 
+        })
+
         scanlineEffect.blendMode.opacity.value = 0.02
-
-
-        setInterval( () => scanlineEffect.density += 1 , 20)
-
-		const noiseEffect = new NoiseEffect({
-			blendFunction: BlendFunction.COLOR_DODGE
-		})
-
         noiseEffect.blendMode.opacity.value = 0.08
 
-        const effectPass = new EffectPass(camera, scanlineEffect, noiseEffect)
+        const effectPass = new EffectPass(  camera, scanlineEffect, noiseEffect )
         effectPass.renderToScreen = true
-        
+
         composer.addPass(new RenderPass(scene, camera))
         composer.addPass(effectPass)
 
@@ -116,7 +115,7 @@ export default class extends React.Component {
             'Contact',
             'Social',
         ]) html.push(
-            <Link href={ '/' + i.toLowerCase() }>
+            <Link key={i} href={ '/' + i.toLowerCase() }>
                 <div>
                     <h3>{ i }</h3><img src={ `static/icons/${i.toLowerCase()}.svg`}/>
                 </div>
