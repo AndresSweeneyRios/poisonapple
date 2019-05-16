@@ -4100,6 +4100,11 @@ postcss@^7.0.0:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
+postprocessing@^6.3.3:
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.3.3.tgz#2444ce86d393a40be700d4ea774734cd2a14220e"
+  integrity sha512-cR5Hcb94PBkAZ7ZOh5URd4L38z+Z+Ab2v1fw4VVlxOZWlZwg9EsGl5YLDKkabksG/hWg16gabP6hnm2gl6EmOw==
+
 private@^0.1.6:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"

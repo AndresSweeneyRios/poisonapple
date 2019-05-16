@@ -1,22 +1,34 @@
 import '../sass/global.sass'
 import css from "./index.sass"
+import Link from 'next/link'
 
 import {
     Scene, WebGLRenderer, HemisphereLight, DirectionalLight, AmbientLight, PointLight, 
-    Mesh, MeshBasicMaterial, MeshStandardMaterial, PerspectiveCamera, PlaneBufferGeometry
+    Mesh, MeshBasicMaterial, MeshStandardMaterial, PerspectiveCamera, PlaneBufferGeometry,
+
+    Clock
 } from 'three'
+
+import {
+    EffectComposer, EffectPass, RenderPass, ShaderPass, ShaderExtras,
+	BlendFunction, ScanlineEffect, NoiseEffect,
+} from 'postprocessing'
 
 import FBXLoader from 'three-fbxloader-offical'
 
 export default class extends React.Component {
     async componentDidMount () {
+        const container = document.querySelector(`.${css.background}`)
+
+        console.log(container.offsetWidth)
+
         const fbx = new FBXLoader()
 
         const scene = new Scene()
-        const renderer = new WebGLRenderer({ antialias: true })
-        const camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000 )
+        const composer = new EffectComposer(new WebGLRenderer())
+        const camera = new PerspectiveCamera( 50, container.offsetWidth / container.offsetHeight, 0.1, 1000 )
 
-        const hemisphere = new HemisphereLight( 0xd9efff, 0x313131, 0.8 );
+        const hemisphere = new HemisphereLight( 0xd9efff, 0x313131, 0.8 )
         const sun = new DirectionalLight( 0xE0D5FF, 1 )
         const ambient = new AmbientLight( 0x303030 )
         const pointlight = new PointLight( 0xffffff, 0.4, 100)
@@ -42,7 +54,7 @@ export default class extends React.Component {
             })
         )
 
-        renderer.setSize( window.innerWidth, window.innerHeight )
+        composer.setSize( container.offsetWidth, container.offsetHeight )
 
         camera.position.z = 6
         camera.position.y = 0.1
@@ -56,26 +68,72 @@ export default class extends React.Component {
         pointlightBack.position.set( 3, 3, 2 )
         apple.position.set( 0, -0.7, 0 )
 
-        sun.castShadow = true;
+        sun.castShadow = true
 
         scene.add( ambient, hemisphere, sun, pointlight, pointlightBack, apple, plane )
 
+		const scanlineEffect = new ScanlineEffect({
+			blendFunction: BlendFunction.ALPHA,
+            density: 1.3
+        })
+
+        scanlineEffect.blendMode.opacity.value = 0.02
+
+
+        setInterval( () => scanlineEffect.density += 1 , 20)
+
+		const noiseEffect = new NoiseEffect({
+			blendFunction: BlendFunction.COLOR_DODGE
+		})
+
+        noiseEffect.blendMode.opacity.value = 0.08
+
+        const effectPass = new EffectPass(camera, scanlineEffect, noiseEffect)
+        effectPass.renderToScreen = true
+        
+        composer.addPass(new RenderPass(scene, camera))
+        composer.addPass(effectPass)
+
+        const clock = new Clock()
+
         const animate = () => {
             requestAnimationFrame( animate )
-            renderer.render( scene, camera )
+            composer.render( clock.getDelta() )
         }
 
         animate()
 
         setInterval( () => apple.rotation.y += 0.01, 20 )
 
-        document.querySelector(`.${css.background}`).appendChild(renderer.domElement)
+        document.querySelector(`.${css.background}`).appendChild(composer.renderer.domElement)
     }
     
+    nav () {
+        const html = []
+
+        for (const i of [
+            'Projects',
+            'Contact',
+            'Social',
+        ]) html.push(
+            <Link href={ '/' + i.toLowerCase() }>
+                <div>
+                    <h3>{ i }</h3><img src={ `static/icons/${i.toLowerCase()}.svg`}/>
+                </div>
+            </Link>
+        )
+
+        return <div className={ css.navigation }>{ html }</div>
+    }
+
     render () {
         return (
-            <div>
-                <div className={css.background}></div>
+            <div className={ css.home }>
+                <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet" />
+                <meta name="theme-color" content="#272727"></meta> 
+                <div className={ css.background }></div>
+                <h1>Andres<br/>Sweeney-<br/>Rios</h1>
+                { this.nav() }
             </div>
         )
     }
