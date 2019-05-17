@@ -1,11 +1,9 @@
-import '../sass/global.sass'
 import css from "./index.sass"
 import Link from 'next/link'
 
 import {
     Scene, WebGLRenderer, HemisphereLight, DirectionalLight, AmbientLight, PointLight, 
-    Mesh, MeshBasicMaterial, MeshStandardMaterial, PerspectiveCamera, PlaneBufferGeometry,
-    Vector2, Clock
+    Mesh, MeshBasicMaterial, MeshStandardMaterial, PerspectiveCamera, PlaneBufferGeometry, Clock
 } from 'three'
 
 import {
@@ -128,8 +126,6 @@ export default class extends React.Component {
     render () {
         return (
             <div className={ css.home }>
-                <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet" />
-                <meta name="theme-color" content="#272727"></meta> 
                 <div className={ css.background }></div>
                 <h1>Andres<br/>Sweeney-<br/>Rios</h1>
                 { this.nav() }

@@ -1,12 +1,10 @@
 .background
-    background-color: #272727
     width: 100vw
     height: 100vh
     overflow: hidden
     position: fixed
     bottom: 0
     left: 0
-    z-index: -1
 
     canvas
         filter: contrast(120%) grayscale(0.3)
@@ -26,17 +24,27 @@
     box-sizing: border-box
 
     h1
+        position: relative
         font-weight: 200
         letter-spacing: 4px
         font-size: 2.5em
+        pointer-events: none
+        user-select: none
+        -moz-user-select: none
 
 .navigation
     margin-top: auto
+    pointer-events: none
+    position: relative
 
     & > div
         height: 3em
         display: flex
         opacity: 0.7
+        user-select: none
+        -moz-user-select: none
+        pointer-events: all
+        cursor: pointer
 
         img
             padding: 0.7em 0
@@ -45,7 +53,6 @@
             margin-left: 0.5em
 
         h3
-            cursor: pointer
             font-size: 2em
             font-weight: 200
             letter-spacing: 2px
