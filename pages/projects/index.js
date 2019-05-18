@@ -34,21 +34,27 @@ const Links = (props) => (
 )
 
 const Handles = (props) => (
-    props.project.handles ? props.project.handles.map( handle => 
-        <a
-            key={ handle.value }
-            type={ handle.type }
-            target="_blank"
-            className={ `${css.handle} ${css.link}` }
-            href={ {
-                twitter: "https://twitter.com/@",
-                instagram: "https://www.instagram.com/",
-                gamejolt: "https://gamejolt.com/@",
-            }[handle.type] + handle.value }
-        >
-            @{ handle.value }
-        </a>
-    ) : ''
+    props.project.handles ? 
+        <div>
+            {
+                props.project.handles.map( handle => 
+                    <a
+                        key={ handle.value }
+                        type={ handle.type }
+                        target="_blank"
+                        className={ `${css.handle} ${css.link}` }
+                        href={ {
+                            twitter: "https://twitter.com/@",
+                            instagram: "https://www.instagram.com/",
+                            gamejolt: "https://gamejolt.com/@",
+                        }[handle.type] + handle.value }
+                    >
+                        @{ handle.value }
+                    </a>
+                )
+            }
+        </div> 
+    : ''
 )
 
 const Description = (props) => {
@@ -115,20 +121,17 @@ export default class extends React.Component {
                                 <div className={ css.info }>
                                     <div>
                                         <h2 className={ css.title }>{ project.title }</h2>
-                                        { <Links project={ project } />}
+                                        <Links project={ project } />
                                     </div>
 
-                                    <div>
-                                        { <Handles project={ project } /> }
-                                    </div>
-
+                                    <Handles project={ project } />
                                     <Description project={ project } description={ project.description }/>
                                 </div>
 
                                 <div className={ css.screenshots }>
                                     <div>
-                                        { <Screenshots project={ project } /> } 
-                                        { <Screenshots project={ project } keyAddition={ `0` } /> } 
+                                        <Screenshots project={ project } />
+                                        <Screenshots project={ project } keyAddition={ `0` } />
                                     </div>
                                 </div>
                             </div>
