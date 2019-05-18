@@ -13,6 +13,7 @@ $pink: #ff69b4
         height: 100vh
         background-size: cover
         background-position: center center
+        overflow: hidden
 
         & > div
             display: flex
@@ -24,8 +25,9 @@ $pink: #ff69b4
                 height: 100vh
                 overflow: hidden
                 margin-left: auto
-                margin-right: 4em
                 margin-top: 0
+                position: absolute
+                right: 4em
 
                 & > div
                     margin-top: 0
@@ -45,13 +47,15 @@ $pink: #ff69b4
                 flex-direction: column
                 align-items: flex-start
                 justify-content: flex-end
-                width: calc(100vw - 23em)
+                width: calc(100% - 27em)
+                height: 100vh
                 box-sizing: border-box
 
                 & > div
                     display: flex
                     align-items: center
                     margin-bottom: 1em
+                    flex-wrap: wrap
 
                     h2
                         font-weight: 200
@@ -83,3 +87,36 @@ $pink: #ff69b4
                     font-size: 1.5em
                     color: rgba(white, 0.7)
                     letter-spacing: 0.5px
+
+            @media (max-aspect-ratio: 4/3)
+                flex-direction: column
+
+                .info
+                    width: 100%
+                    height: 100vh
+                    position: relative
+                    z-index: 2
+
+                .screenshots
+                    height: 100vh
+                    right: 0
+                    width: 100%
+                    position: relative
+                    z-index: 0
+                    display: none
+
+                    & > div
+                        .screenshot
+                            height: 20em
+
+            @media (max-width: 600px)
+                .info
+                    & > div
+
+                        h2
+                            width: 100%
+                        
+                        .project_link
+                            margin-left: 0
+                            margin-right: 0.5em
+                            margin-top: 1em

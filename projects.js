@@ -134,11 +134,28 @@ export default [
             }
         ],
     },
+
+    {
+        title: "CSS Only Chatroom",
+        id: "css_only_chatroom",
+
+        description: `
+            An asynchronous chatroom with the frontend built in all HTML/CSS, 
+            made for the very first Devcord Challenges challenge.
+        `,
+
+        links: [
+            {
+                type: 'github',
+                url: 'https://github.com/Andr3wRiv3rs/css-only-chatroom'
+            }
+        ]
+    },
     
     {
         title: "Mere Mercy",
-
         id: "mere_mercy",
+
         description: "Mere Mercy is a Zombie Survival game for Android, built in Unity.",
 
         screenshots: [],

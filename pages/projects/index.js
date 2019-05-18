@@ -9,7 +9,7 @@ const Screenshots = (props) => (
             className={ css.screenshot } 
             style={{
                 backgroundImage: `
-                    url(/static/projects/${props.project.id}/screenshots/${screenshot}.png)
+                    url(/static/projects/${props.project.id}/screenshots_lq/${screenshot}.png)
                 `
             }} 
         />
@@ -118,6 +118,13 @@ export default class extends React.Component {
                             }}
                         >
                             <div>
+                                <div className={ css.screenshots }>
+                                    <div>
+                                        <Screenshots project={ project } />
+                                        <Screenshots project={ project } keyAddition={ `0` } />
+                                    </div>
+                                </div>
+
                                 <div className={ css.info }>
                                     <div>
                                         <h2 className={ css.title }>{ project.title }</h2>
@@ -126,13 +133,6 @@ export default class extends React.Component {
 
                                     <Handles project={ project } />
                                     <Description project={ project } description={ project.description }/>
-                                </div>
-
-                                <div className={ css.screenshots }>
-                                    <div>
-                                        <Screenshots project={ project } />
-                                        <Screenshots project={ project } keyAddition={ `0` } />
-                                    </div>
                                 </div>
                             </div>
                         </div>    
