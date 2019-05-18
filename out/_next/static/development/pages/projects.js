@@ -99,6 +99,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/set-prototype
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/parse-int.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/parse-int */ "./node_modules/core-js/library/fn/parse-int.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/promise.js":
 /*!****************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/promise.js ***!
@@ -906,6 +917,19 @@ module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/
 
 __webpack_require__(/*! ../../modules/es6.object.set-prototype-of */ "./node_modules/core-js/library/modules/es6.object.set-prototype-of.js");
 module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.setPrototypeOf;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/parse-int.js":
+/*!******************************************************!*\
+  !*** ./node_modules/core-js/library/fn/parse-int.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../modules/es6.parse-int */ "./node_modules/core-js/library/modules/es6.parse-int.js");
+module.exports = __webpack_require__(/*! ../modules/_core */ "./node_modules/core-js/library/modules/_core.js").parseInt;
 
 
 /***/ }),
@@ -2679,6 +2703,26 @@ module.exports = function (KEY, exec) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/modules/_parse-int.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/_parse-int.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $parseInt = __webpack_require__(/*! ./_global */ "./node_modules/core-js/library/modules/_global.js").parseInt;
+var $trim = __webpack_require__(/*! ./_string-trim */ "./node_modules/core-js/library/modules/_string-trim.js").trim;
+var ws = __webpack_require__(/*! ./_string-ws */ "./node_modules/core-js/library/modules/_string-ws.js");
+var hex = /^[-+]?0[xX]/;
+
+module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix) {
+  var string = $trim(String(str), 3);
+  return $parseInt(string, (radix >>> 0) || (hex.test(string) ? 16 : 10));
+} : $parseInt;
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/modules/_perform.js":
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/library/modules/_perform.js ***!
@@ -2996,6 +3040,60 @@ module.exports = function (TO_STRING) {
       : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
   };
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/modules/_string-trim.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/_string-trim.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(/*! ./_export */ "./node_modules/core-js/library/modules/_export.js");
+var defined = __webpack_require__(/*! ./_defined */ "./node_modules/core-js/library/modules/_defined.js");
+var fails = __webpack_require__(/*! ./_fails */ "./node_modules/core-js/library/modules/_fails.js");
+var spaces = __webpack_require__(/*! ./_string-ws */ "./node_modules/core-js/library/modules/_string-ws.js");
+var space = '[' + spaces + ']';
+var non = '\u200b\u0085';
+var ltrim = RegExp('^' + space + space + '*');
+var rtrim = RegExp(space + space + '*$');
+
+var exporter = function (KEY, exec, ALIAS) {
+  var exp = {};
+  var FORCE = fails(function () {
+    return !!spaces[KEY]() || non[KEY]() != non;
+  });
+  var fn = exp[KEY] = FORCE ? exec(trim) : spaces[KEY];
+  if (ALIAS) exp[ALIAS] = fn;
+  $export($export.P + $export.F * FORCE, 'String', exp);
+};
+
+// 1 -> String#trimLeft
+// 2 -> String#trimRight
+// 3 -> String#trim
+var trim = exporter.trim = function (string, TYPE) {
+  string = String(defined(string));
+  if (TYPE & 1) string = string.replace(ltrim, '');
+  if (TYPE & 2) string = string.replace(rtrim, '');
+  return string;
+};
+
+module.exports = exporter;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/modules/_string-ws.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/_string-ws.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
+  '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
 
 /***/ }),
@@ -3506,6 +3604,21 @@ $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(/*! ./_set-pr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/modules/es6.parse-int.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/es6.parse-int.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(/*! ./_export */ "./node_modules/core-js/library/modules/_export.js");
+var $parseInt = __webpack_require__(/*! ./_parse-int */ "./node_modules/core-js/library/modules/_parse-int.js");
+// 18.2.5 parseInt(string, radix)
+$export($export.G + $export.F * (parseInt != $parseInt), { parseInt: $parseInt });
 
 
 /***/ }),
@@ -9912,20 +10025,23 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
-/* harmony import */ var _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/get-iterator */ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _index_sass__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./index.sass */ "./pages/projects/index.sass");
-/* harmony import */ var _index_sass__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_index_sass__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _projects_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../projects.js */ "./projects.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-int */ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/get-iterator */ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _index_sass__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./index.sass */ "./pages/projects/index.sass");
+/* harmony import */ var _index_sass__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_index_sass__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _projects_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../projects.js */ "./projects.js");
+
 
 
 
@@ -9938,23 +10054,118 @@ var _jsxFileName = "D:\\webdev\\poisonapple\\pages\\projects\\index.js";
 
 
 
+var Screenshots = function Screenshots(props) {
+  return props.project.screenshots ? props.project.screenshots.map(function (screenshot) {
+    return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+      key: 'screenshot-' + screenshot + props.keyAddition || false,
+      className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.screenshot,
+      style: {
+        backgroundImage: "\n                    url(/static/projects/".concat(props.project.id, "/screenshots/").concat(screenshot, ".png)\n                ")
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 7
+      },
+      __self: this
+    });
+  }) : '';
+};
+
+var Links = function Links(props) {
+  return props.project.links ? props.project.links.map(function (link) {
+    return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("a", {
+      key: link.url,
+      type: link.type,
+      target: "_blank",
+      className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.project_link,
+      href: link.url,
+      style: {
+        backgroundImage: "\n                    url(/static/icons/".concat(link.type, "_circle.svg)\n                ")
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21
+      },
+      __self: this
+    });
+  }) : '';
+};
+
+var Handles = function Handles(props) {
+  return props.project.handles ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: this
+  }, props.project.handles.map(function (handle) {
+    return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("a", {
+      key: handle.value,
+      type: handle.type,
+      target: "_blank",
+      className: "".concat(_index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.handle, " ").concat(_index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.link),
+      href: {
+        twitter: "https://twitter.com/@",
+        instagram: "https://www.instagram.com/",
+        gamejolt: "https://gamejolt.com/@"
+      }[handle.type] + handle.value,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 41
+      },
+      __self: this
+    }, "@", handle.value);
+  })) : '';
+};
+
+var Description = function Description(props) {
+  var description = props.project.description;
+  description = description.trim().split(/(?!\[[^\[\]]+)\s(?![^\[\]]+\])/g);
+
+  for (var i = 0; i < description.length; i++) {
+    description[i] = " ".concat(description[i], " ");
+    var link = /(\[[^\[\]]+\])(\([^\(\)]+\))/g.exec(description[i]);
+    if (link !== null) description[i] = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("a", {
+      key: link[2],
+      className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.link,
+      target: "_blank",
+      href: link[2].replace(/(\(|\))/g, ''),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 73
+      },
+      __self: this
+    }, link[1].replace(/(\[|\])/g, ''));
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", {
+    key: description,
+    className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.description,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: this
+  }, description);
+};
+
 var _default =
 /*#__PURE__*/
 function (_React$Component) {
-  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(_default, _React$Component);
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(_default, _React$Component);
 
   function _default() {
-    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, _default);
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _default);
 
-    return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(_default).apply(this, arguments));
+    return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(_default).apply(this, arguments));
   }
 
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(_default, [{
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(_default, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this = this;
 
-      var elements = document.querySelectorAll(".".concat(_index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.screenshots));
+      var elements = document.querySelectorAll(".".concat(_index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.screenshots));
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -9964,10 +10175,10 @@ function (_React$Component) {
           var screenshots = _step.value;
           screenshots.scrollInterval = setInterval(function () {
             return _this.scrollScreenshots(screenshots);
-          }, 16.66);
+          }, 16.6);
         };
 
-        for (var _iterator = _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(elements), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (var _iterator = _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_1___default()(elements), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           _loop();
         }
       } catch (err) {
@@ -9988,226 +10199,118 @@ function (_React$Component) {
   }, {
     key: "scrollScreenshots",
     value: function scrollScreenshots(screenshots) {
-      var scrollTop = screenshots.scrollTop,
-          scrollHeight = screenshots.scrollHeight,
-          offsetHeight = screenshots.offsetHeight;
-      scrollTop++;
-      if (scrollTop === (scrollHeight - offsetHeight) / 2 + offsetHeight / 2) scrollTop = 0;
-      screenshots.scrollTop = scrollTop;
-    }
-  }, {
-    key: "getProjects",
-    value: function getProjects() {
-      var projects = [];
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(_projects_js__WEBPACK_IMPORTED_MODULE_9__["default"]), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var project = _step2.value;
-          var screenshots = [],
-              links = [];
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
-
-          try {
-            for (var _iterator3 = _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(project.screenshots), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              var screenshot = _step3.value;
-              screenshots.push(react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-                key: screenshot,
-                className: _index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.screenshot,
-                style: {
-                  backgroundImage: "url(/static/projects/".concat(project.id, "/screenshots/").concat(screenshot, ".png)")
-                },
-                __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 35
-                },
-                __self: this
-              }));
-            }
-          } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                _iterator3.return();
-              }
-            } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
-              }
-            }
-          }
-
-          var _iteratorNormalCompletion4 = true;
-          var _didIteratorError4 = false;
-          var _iteratorError4 = undefined;
-
-          try {
-            for (var _iterator4 = _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(project.screenshots), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-              var _screenshot = _step4.value;
-              screenshots.push(react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-                key: _screenshot + '0',
-                className: _index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.screenshot,
-                style: {
-                  backgroundImage: "url(/static/projects/".concat(project.id, "/screenshots/").concat(_screenshot, ".png)")
-                },
-                __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 42
-                },
-                __self: this
-              }));
-            }
-          } catch (err) {
-            _didIteratorError4 = true;
-            _iteratorError4 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-                _iterator4.return();
-              }
-            } finally {
-              if (_didIteratorError4) {
-                throw _iteratorError4;
-              }
-            }
-          }
-
-          var _iteratorNormalCompletion5 = true;
-          var _didIteratorError5 = false;
-          var _iteratorError5 = undefined;
-
-          try {
-            for (var _iterator5 = _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(project.links), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-              var link = _step5.value;
-              links.push(react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("a", {
-                key: link.url,
-                type: link.type,
-                target: "_blank",
-                className: _index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.link,
-                href: link.url,
-                style: {
-                  backgroundImage: "url(/static/icons/".concat(link.type, "_circle.svg)")
-                },
-                __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 50
-                },
-                __self: this
-              }));
-            }
-          } catch (err) {
-            _didIteratorError5 = true;
-            _iteratorError5 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-                _iterator5.return();
-              }
-            } finally {
-              if (_didIteratorError5) {
-                throw _iteratorError5;
-              }
-            }
-          }
-
-          projects.push(react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-            key: project.id,
-            className: "".concat(_index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.project),
-            style: {
-              backgroundImage: "url(/static/projects/".concat(project.id, "/").concat(project.id, ".png)")
-            },
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 63
-            },
-            __self: this
-          }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 70
-            },
-            __self: this
-          }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-            className: _index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.info,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 71
-            },
-            __self: this
-          }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 72
-            },
-            __self: this
-          }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("h2", {
-            className: _index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.title,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 73
-            },
-            __self: this
-          }, project.title), links), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("p", {
-            className: _index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.description,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 77
-            },
-            __self: this
-          }, project.description)), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-            className: _index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.screenshots,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 80
-            },
-            __self: this
-          }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 81
-            },
-            __self: this
-          }, screenshots)))));
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
-      return projects;
+      var _screenshots$children = screenshots.children[0],
+          top = _screenshots$children.style.top,
+          clientHeight = _screenshots$children.clientHeight;
+      top = _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default()(top || 0) - 1;
+      if (top * -1 >= clientHeight / 2) top = 0;
+      screenshots.children[0].style.top = top + 'px';
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-        className: _index_sass__WEBPACK_IMPORTED_MODULE_8___default.a.projects,
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.projects,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 110
         },
         __self: this
-      }, this.getProjects());
+      }, _projects_js__WEBPACK_IMPORTED_MODULE_10__["default"].map(function (project) {
+        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          key: project.id,
+          className: "".concat(_index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.project),
+          style: {
+            backgroundImage: "url(/static/projects/".concat(project.id, "/").concat(project.id, ".png)")
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 113
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 120
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.info,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 121
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 122
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h2", {
+          className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.title,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 123
+          },
+          __self: this
+        }, project.title), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Links, {
+          project: project,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 124
+          },
+          __self: this
+        })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Handles, {
+          project: project,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 127
+          },
+          __self: this
+        }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Description, {
+          project: project,
+          description: project.description,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 128
+          },
+          __self: this
+        })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.screenshots,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 131
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 132
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Screenshots, {
+          project: project,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 133
+          },
+          __self: this
+        }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Screenshots, {
+          project: project,
+          keyAddition: "0",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 134
+          },
+          __self: this
+        })))));
+      }));
     }
   }]);
 
   return _default;
-}(react__WEBPACK_IMPORTED_MODULE_6___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
 
 
 
@@ -10225,11 +10328,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ([{
   title: "Corgi Stack 3D",
   id: "corgi_stack_3d",
-  description: "\n            Sequel to my entry for the 2016 Corgsmas game jam, Corgi Stack 3D is a \n            reimagined puzzle-platformer which uses cute dogs as moving platforms.\n        ",
+  description: "\n            Sequel to [my entry](https://jams.gamejolt.io/corgsmas/games/corgi-stack/218872) for the [Corgsmas](https://jams.gamejolt.io/corgsmas/games) game jam, Corgi Stack 3D is a \n            reimagined puzzle-platformer which uses cute dogs as moving platforms.\n        ",
   screenshots: [1, 2, 3, 4, 5, 6],
   handles: [{
     type: "twitter",
-    value: "@Andr3wRiv3rs"
+    value: "Andr3wRiv3rs"
   }, {
     type: "instagram",
     value: "elgynjir"
@@ -10240,7 +10343,153 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     type: "github",
     url: "https://github.com/Andr3wRiv3rs/Corgi-Stack-3D"
+  }, {
+    type: "discord",
+    url: "https://discord.gg/taqbtNn"
   }]
+}, {
+  title: "Kismet",
+  id: "kismet",
+  description: "An unannounced surreal horror project.",
+  screenshots: [1, 2, 3, 4, 5],
+  handles: [{
+    type: "twitter",
+    value: "Andr3wRiv3rs"
+  }, {
+    type: "twitter",
+    value: "PinkMayoMusic"
+  }, {
+    type: "twitter",
+    value: "AnonMaGames"
+  }, {
+    type: "gamejolt",
+    value: "anthonyme00"
+  }],
+  links: []
+}, {
+  title: "YaaiiA",
+  id: "yaaiia",
+  description: "\n            Short for \"Yet another alien invasion in Atlanta\", \n            this was an entry for the [Dreamhack Atlanta 2018](https://jams.gamejolt.io/dhjam) game jam, developed in Unity.\n        ",
+  screenshots: [1, 2, 3, 4, 5],
+  handles: [{
+    type: "twitter",
+    value: "Andr3wRiv3rs"
+  }, {
+    type: "gamejolt",
+    value: "anthonyme00"
+  }, {
+    type: "twitter",
+    value: "twpunkster"
+  }],
+  links: [{
+    type: "gamejolt",
+    url: "https://gamejolt.com/games/yaaiia/377383"
+  }]
+}, {
+  title: "Devcord Challenges",
+  id: "devcord_challenges",
+  description: "\n            A community driven coding challenge app, \n            built in Nuxt.js by myself for the Devcord community.\n        ",
+  links: [{
+    type: "devcord",
+    url: "https://challenge.devcord.com"
+  }, {
+    type: "discord",
+    url: "https://discord.gg/EhTaURr"
+  }]
+}, {
+  title: "Mere Mercy",
+  id: "mere_mercy",
+  description: "Mere Mercy is a Zombie Survival game for Android, built in Unity.",
+  screenshots: [],
+  handles: [{
+    type: "twitter",
+    value: "TheAtheistSheep"
+  }, {
+    type: "twitter",
+    value: "Andr3wRiv3rs"
+  }, {
+    type: "twitter",
+    value: "DablTrabl2"
+  }, {
+    type: "twitter",
+    value: "MikeyBoyii"
+  }, {
+    type: "instagram",
+    value: "evanrossney"
+  }],
+  links: []
+}, {
+  title: "Malus",
+  id: "malus",
+  description: "\n            A UPnP portmapper, built using [my wrapper](https://www.npmjs.com/package/nat-upnp-wrapper) \n            for the [nat-upnp](https://www.npmjs.com/package/nat-upnp) module.\n        ",
+  links: [{
+    type: "github",
+    url: "https://github.com/Andr3wRiv3rs/port-mapper"
+  }]
+}, {
+  title: "Twilight Punkster Galaxy",
+  id: "twilightpunkster",
+  description: "\n            Worked on the MMORPG \"Twilight Punkster Galaxy\" \n            as a fullstack web developer, using Express and Vue.js.\n        ",
+  screenshots: [],
+  links: [{
+    type: "medium",
+    url: "https://medium.com/@twpunkster/twilight-punkster-651cf3a52954"
+  }, {
+    type: "twitter",
+    url: "https://twitter.com/twpunkster"
+  }]
+}, {
+  title: "Stardust",
+  id: "stardust",
+  description: "Briefly worked with [Stardust](https://www.stardust.gg/)'s blockchain technologies, building a client in Electron.",
+  screenshots: [],
+  links: [],
+  left: true
+}, {
+  title: "Cherry",
+  id: "cherry",
+  description: "My chatbot built in Node.js with Discord.js. Cherry is capable of playing music, giving definitions, and automating color roles among other things.",
+  screenshots: [],
+  links: [{
+    type: "discord",
+    url: "https://discordapp.com/api/oauth2/authorize?client_id=443491966576230400&permissions=8&scope=bot"
+  }, {
+    type: "github",
+    url: "https://github.com/Andr3wRiv3rs/Cherry"
+  }],
+  left: true
+}, {
+  title: "Untitled Worm I/O",
+  id: "worm_io",
+  description: "A Slither.io inspired project, utilizing cryptocurrency as a driving mechanic.",
+  screenshots: [],
+  links: [{
+    type: "github",
+    url: "https://github.com/Andr3wRiv3rs/worm-io"
+  }]
+}, {
+  title: "Shh",
+  id: "shh",
+  description: "A Peer to peer encrypted chat client built in Electron with WebRTC and WebSockets.",
+  screenshots: [],
+  links: [{
+    type: "github",
+    url: "https://github.com/Andr3wRiv3rs/Shh-Client"
+  }],
+  left: true
+}, {
+  title: "Bearmon",
+  id: "bearmon",
+  description: "An online multiplayer turn based RPG for the 2017 Bear Week jam on Game Jolt.",
+  screenshots: [],
+  links: [{
+    type: "gamejolt",
+    url: "https://gamejolt.com/games/bearmon/276536"
+  }, {
+    type: "github",
+    url: "https://github.com/Andr3wRiv3rs/bearmon-2017"
+  }],
+  left: true
 }]);
 
 /***/ }),
