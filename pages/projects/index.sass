@@ -1,9 +1,12 @@
+$pink: #ff69b4
+    
 .projects
     display: flex
     flex-direction: column
     height: auto
-    width: 100vw
+    width: 100%
     flex-wrap: wrap
+    overflow-x: hidden
 
     .project
         width: 100%
@@ -21,9 +24,13 @@
                 height: 100vh
                 overflow: hidden
                 margin-left: auto
-                margin-right: 6em
+                margin-right: 4em
+                margin-top: 0
 
                 & > div
+                    margin-top: 0
+                    position: relative
+                    top: 0
                     width: 100%
                     .screenshot
                         width: 100%
@@ -51,7 +58,7 @@
                         font-size: 2.4em
                         letter-spacing: 1px
 
-                    .link
+                    .project_link
                         display: inline-block
                         width: 2.3em
                         height: 2.3em
@@ -59,6 +66,18 @@
                         background-size: contain
                         background-repeat: no-repeat
                         background-position: center center
+
+                    .handle
+                        margin-right: 0.5em
+
+                .link
+                    color: $pink
+                    text-decoration: none
+                    border-bottom: 1px solid transparent
+                    border-top: 1px solid transparent
+
+                    &:hover
+                        border-bottom: 1px solid $pink
 
                 p
                     font-size: 1.5em
