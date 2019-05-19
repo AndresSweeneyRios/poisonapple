@@ -1,0 +1,46 @@
+.gallery
+    width: 100%
+    height: 100vh
+    overflow-y: hidden
+
+    .selector
+        display: flex
+        overflow-x: auto
+        overflow-y: hidden
+        height: 11em
+
+        img
+            display: inline-block
+            float: left
+            height: 100%
+            margin-left: 0.4em
+            cursor: pointer
+
+            &:nth-child(1)
+                margin-left: 0
+
+    .viewport
+        height: calc(100% - 10.5em)
+        overflow: hidden
+
+        & > div
+            height: 100%
+            filter: blur(10px) grayscale(50%) brightness(50%)
+            position: relative
+            z-index: 0
+            background-size: cover
+            background-position: center center
+            width: 150%
+            height: 150%
+            top: -25%
+            left: -25%
+
+        & > img, .screenshot
+            height: calc(100vh - 11em)
+            width: 100vw
+            object-fit: contain
+            position: absolute
+            top: 11em
+            z-index: 1
+
+        

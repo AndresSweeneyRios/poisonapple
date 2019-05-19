@@ -10060,7 +10060,7 @@ var Screenshots = function Screenshots(props) {
       key: 'screenshot-' + screenshot + props.keyAddition || false,
       className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.screenshot,
       style: {
-        backgroundImage: "\n                    url(/static/projects/".concat(props.project.id, "/screenshots/").concat(screenshot, ".png)\n                ")
+        backgroundImage: "\n                    url(/static/projects/".concat(props.project.id, "/screenshots_lq/").concat(screenshot, ".png)\n                ")
       },
       __source: {
         fileName: _jsxFileName,
@@ -10235,7 +10235,7 @@ function (_React$Component) {
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-          className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.info,
+          className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.screenshots,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 121
@@ -10247,53 +10247,11 @@ function (_React$Component) {
             lineNumber: 122
           },
           __self: this
-        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h2", {
-          className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.title,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 123
-          },
-          __self: this
-        }, project.title), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Links, {
-          project: project,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 124
-          },
-          __self: this
-        })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Handles, {
-          project: project,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 127
-          },
-          __self: this
-        }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Description, {
-          project: project,
-          description: project.description,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 128
-          },
-          __self: this
-        })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-          className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.screenshots,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 131
-          },
-          __self: this
-        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 132
-          },
-          __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Screenshots, {
           project: project,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 133
+            lineNumber: 123
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Screenshots, {
@@ -10301,10 +10259,52 @@ function (_React$Component) {
           keyAddition: "0",
           __source: {
             fileName: _jsxFileName,
+            lineNumber: 124
+          },
+          __self: this
+        }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.info,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 128
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 129
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h2", {
+          className: _index_sass__WEBPACK_IMPORTED_MODULE_9___default.a.title,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 130
+          },
+          __self: this
+        }, project.title), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Links, {
+          project: project,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 131
+          },
+          __self: this
+        })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Handles, {
+          project: project,
+          __source: {
+            fileName: _jsxFileName,
             lineNumber: 134
           },
           __self: this
-        })))));
+        }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Description, {
+          project: project,
+          description: project.description,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 135
+          },
+          __self: this
+        }))));
       }));
     }
   }]);
@@ -10395,6 +10395,14 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     type: "discord",
     url: "https://discord.gg/EhTaURr"
+  }]
+}, {
+  title: "CSS Only Chatroom",
+  id: "css_only_chatroom",
+  description: "\n            An asynchronous chatroom with the frontend built in all HTML/CSS, \n            made for the very first Devcord Challenges challenge.\n        ",
+  links: [{
+    type: 'github',
+    url: 'https://github.com/Andr3wRiv3rs/css-only-chatroom'
   }]
 }, {
   title: "Mere Mercy",

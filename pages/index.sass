@@ -38,7 +38,7 @@
     position: relative
 
     & > div
-        height: 3em
+        height: 2.7em
         display: flex
         opacity: 0.7
         user-select: none
@@ -47,7 +47,7 @@
         cursor: pointer
 
         img
-            padding: 0.7em 0
+            padding: 0.5em
             height: 100%
             box-sizing: border-box
             margin-left: 0.5em
@@ -62,3 +62,30 @@
 
         &:hover
             opacity: 1
+
+    @media (max-width: 600px)
+        margin-bottom: 1em
+
+.powered_by
+    position: fixed
+    bottom: 1em
+    right: 1em
+    height: 2em
+    width: auto
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    opacity: 0.7
+
+    img
+        height: 2em
+        margin-left: 1.5em
+
+    @media (max-width: 600px)
+        right: auto
+        bottom: 0
+        position: relative
+
+        img
+            margin-left: 0
+            margin-right: 1.5em

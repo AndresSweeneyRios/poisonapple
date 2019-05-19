@@ -3,12 +3,13 @@ import Link from 'next/link'
 
 import {
     Scene, WebGLRenderer, HemisphereLight, DirectionalLight, AmbientLight, PointLight, 
-    Mesh, MeshBasicMaterial, MeshStandardMaterial, PerspectiveCamera, PlaneBufferGeometry, Clock
+    Mesh, MeshBasicMaterial, MeshStandardMaterial, PerspectiveCamera, PlaneBufferGeometry, Clock,
+    Vector2
 } from 'three'
 
 import {
     EffectComposer, EffectPass, RenderPass, BlendFunction, 
-    ScanlineEffect, NoiseEffect
+    ScanlineEffect, NoiseEffect, ChromaticAberrationEffect
 } from 'postprocessing'
 
 import FBXLoader from 'three-fbxloader-offical'
@@ -82,10 +83,22 @@ export default class extends React.Component {
             blendFunction: BlendFunction.COLOR_DODGE 
         })
 
+        const chromaticAberrationEffect = new ChromaticAberrationEffect({
+            offset: new Vector2(0, 0)
+        })
+
+        // window.addEventListener('mousemove', event => {
+        //     const { clientX, clientY } = event
+            
+        //     chromaticAberrationEffect.offset.x = (clientX - (window.innerWidth/2)) * -0.000018
+            
+        //     chromaticAberrationEffect.offset.y = (clientY - (window.innerHeight/2)) * -0.000022
+        // })
+
         scanlineEffect.blendMode.opacity.value = 0.02
         noiseEffect.blendMode.opacity.value = 0.08
 
-        const effectPass = new EffectPass(  camera, scanlineEffect, noiseEffect )
+        const effectPass = new EffectPass( camera, scanlineEffect, noiseEffect, chromaticAberrationEffect )
         effectPass.renderToScreen = true
 
         composer.addPass(new RenderPass(scene, camera))
@@ -129,6 +142,10 @@ export default class extends React.Component {
                 <div className={ css.background }></div>
                 <h1>Andres<br/>Sweeney-<br/>Rios</h1>
                 { this.nav() }
+                <div className={ css.powered_by }>
+                    <img src="/static/icons/nextjs.svg" />
+                    <img src="/static/icons/threejs.svg" />
+                </div>
             </div>
         )
     }

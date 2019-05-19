@@ -1,5 +1,5 @@
-export default [
-    {
+export default {
+    corgi_stack_3d: {
         title: "Corgi Stack 3D",
         id: "corgi_stack_3d",
 
@@ -42,7 +42,7 @@ export default [
         ]
     },
     
-    {
+    kismet: {
         title: "Kismet",
         id: "kismet",
 
@@ -74,7 +74,7 @@ export default [
         links: []
     }, 
     
-    {
+    yaaiia: {
         title: "YaaiiA",
         id: "yaaiia",
 
@@ -113,7 +113,7 @@ export default [
         ]
     },
 
-    {
+    devcord_challenges: {
         title: "Devcord Challenges",
         id: "devcord_challenges",
 
@@ -135,7 +135,7 @@ export default [
         ],
     },
 
-    {
+    css_only_chatroom: {
         title: "CSS Only Chatroom",
         id: "css_only_chatroom",
 
@@ -152,13 +152,11 @@ export default [
         ]
     },
     
-    {
+    mere_mercy: {
         title: "Mere Mercy",
         id: "mere_mercy",
 
         description: "Mere Mercy is a Zombie Survival game for Android, built in Unity.",
-
-        screenshots: [],
 
         handles: [
             {
@@ -195,7 +193,7 @@ export default [
         links: []
     }, 
 
-    {
+    malus: {
         title: "Malus",
         id: "malus",
 
@@ -212,7 +210,7 @@ export default [
         ]
     },
     
-    {
+    twilightpunkster: {
         title: "Twilight Punkster Galaxy",
         id: "twilightpunkster",
 
@@ -220,8 +218,6 @@ export default [
             Worked on the MMORPG "Twilight Punkster Galaxy" 
             as a fullstack web developer, using Express and Vue.js.
         `,
-
-        screenshots: [],
 
         links: [
             {
@@ -236,25 +232,22 @@ export default [
         ]
     }, 
     
-    {
+    stardust: {
         title: "Stardust",
         id: "stardust",
 
         description: "Briefly worked with [Stardust](https://www.stardust.gg/)'s blockchain technologies, building a client in Electron.",
 
-        screenshots: [],
         links: [],
 
         left: true
     },  
     
-    {
+    cherry: {
         title: "Cherry",
         id: "cherry",
 
         description: "My chatbot built in Node.js with Discord.js. Cherry is capable of playing music, giving definitions, and automating color roles among other things.",
-
-        screenshots: [],
 
         links: [
             {
@@ -269,14 +262,12 @@ export default [
         left: true
     }, 
     
-    {
+    worm_io: {
         title: "Untitled Worm I/O",
 
         id: "worm_io",
 
         description: "A Slither.io inspired project, utilizing cryptocurrency as a driving mechanic.",
-
-        screenshots: [],
 
         links: [
             {
@@ -286,13 +277,11 @@ export default [
         ]
     }, 
     
-    {
+    shh: {
         title: "Shh",
         id: "shh",
 
         description: "A Peer to peer encrypted chat client built in Electron with WebRTC and WebSockets.",
-
-        screenshots: [],
 
         links: [
             {
@@ -304,13 +293,11 @@ export default [
         left: true
     }, 
     
-    {
+    bearmon: {
         title: "Bearmon",
         id: "bearmon",
 
         description: "An online multiplayer turn based RPG for the 2017 Bear Week jam on Game Jolt.",
-
-        screenshots: [],
 
         links: [
             {
@@ -324,4 +311,4 @@ export default [
 
         left: true
     }
-]
+}

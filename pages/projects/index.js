@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import css from './index.sass'
 import Projects from '../../projects.js'
+import Link from 'next/link'
 
 const Screenshots = (props) => (
     props.project.screenshots ? props.project.screenshots.map( screenshot => 
@@ -109,7 +109,7 @@ export default class extends React.Component {
         return (
             <div className={ css.projects }>
                 {
-                    Projects.map( project =>
+                    Object.values(Projects).map( project =>
                         <div 
                             key={ project.id } 
                             className={ `${css.project}` } 
@@ -119,10 +119,14 @@ export default class extends React.Component {
                         >
                             <div>
                                 <div className={ css.screenshots }>
-                                    <div>
-                                        <Screenshots project={ project } />
-                                        <Screenshots project={ project } keyAddition={ `0` } />
-                                    </div>
+                                    <Link 
+                                        href={ `projects/gallery?id=${project.id}` }
+                                    >
+                                        <div>
+                                            <Screenshots project={ project } />
+                                            <Screenshots project={ project } keyAddition={ `0` } />
+                                        </div>
+                                    </Link>
                                 </div>
 
                                 <div className={ css.info }>
@@ -133,6 +137,15 @@ export default class extends React.Component {
 
                                     <Handles project={ project } />
                                     <Description project={ project } description={ project.description }/>
+                                    {
+                                        project.screenshots ? 
+                                            <Link
+                                                href={ `projects/gallery?id=${project.id}` }
+                                            >
+                                                <button>View Gallery</button>
+                                            </Link> 
+                                        : ''
+                                    }
                                 </div>
                             </div>
                         </div>    

@@ -51,6 +51,19 @@ $pink: #ff69b4
                 height: 100vh
                 box-sizing: border-box
 
+                button
+                    margin-top: 1.3em
+                    padding: 0.8em
+                    font-size: 1.2em
+                    color: white
+                    background-color: transparent
+                    border: 1px solid white
+                    cursor: pointer
+
+                    &:hover
+                        background-color: white
+                        color: #272727
+
                 & > div
                     display: flex
                     align-items: center
@@ -107,16 +120,27 @@ $pink: #ff69b4
 
                     & > div
                         .screenshot
+                            display: none
                             height: 20em
 
             @media (max-width: 600px)
                 .info
                     & > div
+                        justify-content: center
+                        width: 100%
 
                         h2
                             width: 100%
+                            text-align: center
                         
                         .project_link
                             margin-left: 0
                             margin-right: 0.5em
                             margin-top: 1em
+                            
+                    p
+                        text-align: center
+
+                    button
+                        margin-left: auto
+                        margin-right: auto
