@@ -128,7 +128,7 @@ export default class extends React.Component {
         ]) html.push(
             <Link key={i} href={ '/' + i.toLowerCase() }>
                 <div>
-                    <h3>{ i }</h3><img src={ `static/icons/${i.toLowerCase()}.svg`}/>
+                    <h3>{ i }</h3><img src={ `/static/icons/${i.toLowerCase()}.svg`}/>
                 </div>
             </Link>
         )

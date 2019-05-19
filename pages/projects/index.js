@@ -120,7 +120,7 @@ export default class extends React.Component {
                             <div>
                                 <div className={ css.screenshots }>
                                     <Link 
-                                        href={ `projects/gallery?id=${project.id}` }
+                                        href={ `/projects/gallery?id=${project.id}` }
                                     >
                                         <div>
                                             <Screenshots project={ project } />
@@ -140,7 +140,7 @@ export default class extends React.Component {
                                     {
                                         project.screenshots ? 
                                             <Link
-                                                href={ `projects/gallery?id=${project.id}` }
+                                                href={ `/projects/gallery?id=${project.id}` }
                                             >
                                                 <button>View Gallery</button>
                                             </Link> 

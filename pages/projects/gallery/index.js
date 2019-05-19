@@ -22,7 +22,11 @@ export default withRouter( class extends React.Component {
     }
 
     render () {
-        return (
+        if (
+            this.props.router.query.id && 
+            Projects[this.props.router.query.id] &&
+            Projects[this.props.router.query.id].screenshots
+        ) return (
             <div className={ css.gallery }>
                 <div className={ css.selector }>
                     { 
@@ -69,6 +73,12 @@ export default withRouter( class extends React.Component {
                     />
                 </div>
             </div>
+        )
+
+        else return (
+            <h2>
+                Invalid project ID.
+            </h2>
         )
     }
 })
