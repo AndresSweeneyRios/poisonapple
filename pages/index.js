@@ -87,13 +87,15 @@ export default class extends React.Component {
             offset: new Vector2(0, 0)
         })
 
-        // window.addEventListener('mousemove', event => {
-        //     const { clientX, clientY } = event
-            
-        //     chromaticAberrationEffect.offset.x = (clientX - (window.innerWidth/2)) * -0.000018
-            
-        //     chromaticAberrationEffect.offset.y = (clientY - (window.innerHeight/2)) * -0.000022
-        // })
+        window.addEventListener('click',
+            () => window.onmousemove = event => {
+                const { clientX, clientY } = event
+                
+                chromaticAberrationEffect.offset.x = (clientX - (window.innerWidth/2)) * -0.000018
+                
+                chromaticAberrationEffect.offset.y = (clientY - (window.innerHeight/2)) * -0.000022
+            }
+        )
 
         scanlineEffect.blendMode.opacity.value = 0.02
         noiseEffect.blendMode.opacity.value = 0.08
@@ -123,8 +125,7 @@ export default class extends React.Component {
 
         for (const i of [
             'Projects',
-            'Contact',
-            'Social',
+            'About',
         ]) html.push(
             <Link key={i} href={ '/' + i.toLowerCase() }>
                 <div>
@@ -143,8 +144,18 @@ export default class extends React.Component {
                 <h1>Andres<br/>Sweeney-<br/>Rios</h1>
                 { this.nav() }
                 <div className={ css.powered_by }>
-                    <img src="/static/icons/nextjs.svg" />
-                    <img src="/static/icons/threejs.svg" />
+                    <a 
+                        href="https://nextjs.org/"
+                        target="_blank"
+                    >
+                        <img src="/static/icons/nextjs.svg" />
+                    </a>
+                    <a 
+                        href="https://threejs.org/"
+                        target="_blank"
+                    >
+                        <img src="/static/icons/threejs.svg" />
+                    </a>
                 </div>
             </div>
         )
