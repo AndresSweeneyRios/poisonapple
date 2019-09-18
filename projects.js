@@ -41,6 +41,26 @@ export default {
             }
         ]
     },
+
+    firefight: {
+        title: "Firefig.ht",
+        id: 'firefight',
+
+        screenshots: [
+            1,2,3,1,2,3
+        ],
+
+        description: `
+            Built a custom Minecraft launcher for [Firefig.ht](https://https://firefig.ht/) in Vue.js.
+        `,
+
+        links: [
+            {
+                type: "github",
+                url: "https://github.com/AeternumIndustries/firefight-releases/releases"
+            },
+        ]
+    },
     
     kismet: {
         title: "Kismet",
@@ -73,6 +93,41 @@ export default {
         
         links: []
     }, 
+
+    malus: {
+        title: "Malus",
+        id: "malus",
+
+        description: `
+            A UPnP portmapper, built using [my wrapper](https://www.npmjs.com/package/nat-upnp-wrapper) 
+            for the [nat-upnp](https://www.npmjs.com/package/nat-upnp) module.
+        `,
+
+        links: [
+            {
+                type: "github",
+                url: "https://github.com/Andr3wRiv3rs/port-mapper"
+            }
+        ]
+    },
+
+    simple_webrtc: {
+        title: "Simple WebRTC",
+        id: "simple_webrtc",
+
+        description: `
+            A library written in JavaScript aimed at making WebRTC dead simple.
+        `,
+        
+        links: [
+            {
+                type: "github",
+                url: "https://github.com/Andr3wRiv3rs/simple_webrtc"
+            },
+        ],
+
+        left: true
+    },
     
     yaaiia: {
         title: "YaaiiA",
@@ -113,44 +168,44 @@ export default {
         ]
     },
 
-    devcord_challenges: {
-        title: "Devcord Challenges",
-        id: "devcord_challenges",
+    // devcord_challenges: {
+    //     title: "Devcord Challenges",
+    //     id: "devcord_challenges",
 
-        description: `
-            A community driven coding challenge app, 
-            built in Nuxt.js by myself for the Devcord community.
-        `,
+    //     description: `
+    //         A community driven coding challenge app, 
+    //         built in Nuxt.js by myself for the Devcord community.
+    //     `,
 
-        links: [
-            {
-                type: "devcord",
-                url: "https://challenge.devcord.com"
-            },
+    //     links: [
+    //         {
+    //             type: "devcord",
+    //             url: "https://challenge.devcord.com"
+    //         },
 
-            {
-                type: "discord",
-                url: "https://discord.gg/EhTaURr"
-            }
-        ],
-    },
+    //         {
+    //             type: "discord",
+    //             url: "https://discord.gg/EhTaURr"
+    //         }
+    //     ],
+    // },
 
-    css_only_chatroom: {
-        title: "CSS Only Chatroom",
-        id: "css_only_chatroom",
+    // css_only_chatroom: {
+    //     title: "CSS Only Chatroom",
+    //     id: "css_only_chatroom",
 
-        description: `
-            An asynchronous chatroom with the frontend built in all HTML/CSS, 
-            made for the very first Devcord Challenges challenge.
-        `,
+    //     description: `
+    //         An asynchronous chatroom with the frontend built in all HTML/CSS, 
+    //         made for the very first Devcord Challenges challenge.
+    //     `,
 
-        links: [
-            {
-                type: 'github',
-                url: 'https://github.com/Andr3wRiv3rs/css-only-chatroom'
-            }
-        ]
-    },
+    //     links: [
+    //         {
+    //             type: 'github',
+    //             url: 'https://github.com/Andr3wRiv3rs/css-only-chatroom'
+    //         }
+    //     ]
+    // },
     
     mere_mercy: {
         title: "Mere Mercy",
@@ -192,23 +247,6 @@ export default {
 
         links: []
     }, 
-
-    malus: {
-        title: "Malus",
-        id: "malus",
-
-        description: `
-            A UPnP portmapper, built using [my wrapper](https://www.npmjs.com/package/nat-upnp-wrapper) 
-            for the [nat-upnp](https://www.npmjs.com/package/nat-upnp) module.
-        `,
-
-        links: [
-            {
-                type: "github",
-                url: "https://github.com/Andr3wRiv3rs/port-mapper"
-            }
-        ]
-    },
     
     twilightpunkster: {
         title: "Twilight Punkster Galaxy",
